@@ -6,6 +6,14 @@ This project is a small client-side web application that allows:
 - allows driving/controlling a locally installed and pre-configured OBS
 - to simplify the management of a presentation that is recorded or streamed to a pre-configured destination.
 
+### Demo
+
+You can test it here:
+
+https://ruthetdav.github.io/obs-remote-recording
+
+It works on Firefox and Chrome, but **not on MacOS 10 Safari**, because of mixed content between https and http.
+
 ### Used Technological stacks:
 
 - Webpack 4
