@@ -1,5 +1,7 @@
 # OBS Browser-based Presentation Recording Studio
 
+![Build and Deploy](https://github.com/ruthetdav/obs-remote-recording/workflows/Build%20and%20Deploy/badge.svg)
+
 ### Description
 
 This project is a small client-side web application that allows:
