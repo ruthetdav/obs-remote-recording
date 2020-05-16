@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.CustomBrowser": "chrome",
+		"liveServer.settings.ChromeDebuggingAttachment": true,
+		"liveServer.settings.multiRootWorkspaceName": "webpack-bootstrap-master",
+		"liveServer.settings.port": 8080,
+		"liveServer.settings.host": "localhost"
+	}
+}
