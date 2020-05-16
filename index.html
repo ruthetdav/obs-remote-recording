@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic page info -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Studio d'Enregistrement</title>
+
+    <!-- Website icon -->
+    <link rel="icon" type="image/png" href="http://placehold.it/20x20" />
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="http://placehold.it/200x200" />
+
+    <!-- CSS includes -->
+    <link rel="stylesheet" href="dist/css/style.css" />
+
+    <!-- Meta information -->
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Social media (frontend only) -->
+    <meta property="og:site_name" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:locale" content="en_US" />
+  </head>
+  <body>
+    <!-- JavaScript includes -->
+    <script src="dist/js/app.js"></script>
+
+    <h1>Studio d'Enregistrement</h1>
+
+    <p>
+      <a
+        class="btn btn-primary"
+        data-toggle="collapse"
+        href="#collapse"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapse"
+      >
+        Configuration
+      </a>
+    </p>
+
+    <div class="collapse" id="collapse">
+      <div class="card card-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <div class="container">
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <h3>
+                      Connection à OBS
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <div class="align-self-center">
+                      <i
+                        class="material-icons md-48"
+                        style="display: none;"
+                        id="connected"
+                        >power</i
+                      >
+                      <i
+                        class="material-icons md-48"
+                        style="display: none;"
+                        id="disconnected"
+                        >cancel</i
+                      >
+                    </div>
+                    <div class="align-self-center">
+                      <div
+                        id="connect_error"
+                        class="alert alert-danger"
+                        role="alert"
+                        style="display: none;"
+                      ></div>
+                      <div
+                        id="connect_success"
+                        class="alert alert-success"
+                        role="alert"
+                        style="display: none;"
+                      >
+                        Connecté
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <button
+                      id="connect"
+                      class="btn btn-primary"
+                      style="display: none;"
+                    >
+                      Connecter
+                    </button>
+                    <button
+                      id="disconnect"
+                      class="btn btn-primary"
+                      style="display: none;"
+                    >
+                      Déconnecter
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="scenario" class="col">
+              <h3>
+                Scénario
+              </h3>
+              <form>
+                <label>Scènes</label>
+                <div class="p-3">
+                  <div class="form-group">
+                    <label for="introScene">Introduction</label>
+                    <select class="form-control" id="introScene"></select>
+                  </div>
+                  <div class="form-group">
+                    <label for="presentationScene">Présentation</label>
+                    <select
+                      class="form-control"
+                      id="presentationScene"
+                    ></select>
+                  </div>
+                  <div class="form-group">
+                    <label for="finalScene">Final</label>
+                    <select class="form-control" id="finalScene"></select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="transition">Transition</label>
+                  <div class="input-group mb-3">
+                    <select class="form-control" id="transition"></select>
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="descDuration">
+                        de
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="3000 ms par défaut"
+                        aria-describedby="descDuration"
+                        id="duration"
+                        pattern="[0-9]{3,4}"
+                        title="Durée de la transition en millisecondes"
+                      />
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">ms</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="applyScenario"
+                >
+                  Appliquer
+                </button>
+              </form>
+            </div>
+            <div id="control" class="col">
+              <div class="container">
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <h3>
+                      Contrôle
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <div class="align-self-center">
+                      <i
+                        class="material-icons md-48"
+                        style="display: none;"
+                        id="recording-on"
+                        >mic</i
+                      >
+                      <i
+                        class="material-icons md-48"
+                        style="display: none;"
+                        id="recording-off"
+                        >mic_off</i
+                      >
+                      <i
+                        class="material-icons md-48"
+                        style="display: none;"
+                        id="cast-connected"
+                        >cast_connected</i
+                      >
+                    </div>
+                    <div class="align-self-center">
+                      <div
+                        id="streaming"
+                        class="alert alert-success"
+                        role="alert"
+                        style="display: none;"
+                      >
+                        Streaming en cours
+                      </div>
+                      <div
+                        id="recording"
+                        class="alert alert-success"
+                        role="alert"
+                        style="display: none;"
+                      >
+                        Enregistrement en cours
+                      </div>
+                      <div
+                        id="stopped"
+                        class="alert alert-error"
+                        role="alert"
+                        style="display: none;"
+                      >
+                        Arrêt
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <button
+                      id="record"
+                      class="btn btn-primary"
+                      style="display: none;"
+                    >
+                      Enregistrer
+                    </button>
+                    <button
+                      id="stream"
+                      class="btn btn-primary"
+                      style="display: none;"
+                    >
+                      Streamer
+                    </button>
+                    <button
+                      id="stop"
+                      class="btn btn-primary"
+                      style="display: none;"
+                    >
+                      Stopper
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div id="indics" class="col">
+              <h3>
+                Indicateurs
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="presentation" class="card card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="jumbotron">
+              <h1 class="display-4">Présentation</h1>
+              <p id="presentationTextCannotStart" class="lead">
+                L'enregistrement n'est pas démarré.<br />
+                Il faut d'abord passer par la configuration pour se connecter à
+                OBS, configurer le scénario et démarrer l'enregistrement ou le
+                streaming.<br />
+                Vous pourrez alors démarrer la présentation, et le temps de
+                présentation s'affichera sur le compteur ci-dessous.
+              </p>
+              <p
+                id="presentationTextCanStart"
+                class="lead"
+                style="display: none;"
+              >
+                Pour commencer la présentation, cliquez sur "Démarrer la
+                présentation" et attendez le feu-vert pour parler.
+              </p>
+              <p
+                id="presentationTextStarted"
+                class="lead"
+                style="display: none;"
+              >
+                Présentation en cours. Le temps de présentation est affiché
+                ci-dessous.
+                <br />
+                Pour arrêter la présentation, cliquez sur "Arrêter la
+                présentation" et attendez le feu-rouge pour sortir de la caméra.
+              </p>
+              <p
+                id="presentationTextStopped"
+                class="lead"
+                style="display: none;"
+              >
+                Présentation terminée.
+                <br />
+                La scène de fin accompagnée de musique a remplacé la
+                présentation.
+              </p>
+              <hr class="my-4" />
+              <div class="display-4"><span id="chrono">00:00:00</span>
+                &nbsp;
+                <i class="material-icons md-48" style="display: none;" id="iconIsFilmed">tv</i>
+                <i class="material-icons md-48 md-green" style="display: none;" id="iconCanPresent">record_voice_over</i>
+                <i class="material-icons md-48 md-red" style="display: none;" id="iconCannotPresent">record_voice_over</i>
+              </div>
+              <a
+                class="btn btn-primary btn-lg"
+                role="button"
+                id="startPresentation"
+                style="display: none;"
+                >Démarrer la présentation</a
+              >
+              <a
+                class="btn btn-primary btn-lg"
+                role="button"
+                id="stopPresentation"
+                style="display: none;"
+                >Arrêter la présentation</a
+              >
+            </div>
+          </div>
+          <div class="col col-md-auto">
+            <canvas id="clock" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
