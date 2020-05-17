@@ -8,7 +8,15 @@ This project is a small client-side web application that allows:
 - allows driving/controlling a locally installed and pre-configured OBS
 - to simplify the management of a presentation that is recorded or streamed to a pre-configured destination.
 
-### Demo
+### How to run
+
+##### Pre-requisite
+
+This projects depends on the `obs-websocket` plugin being installed in OBS.
+Installation instructions for the last version are there:
+https://github.com/Palakis/obs-websocket/releases/tag/4.7.0
+
+##### Demo
 
 You can test it here:
 
