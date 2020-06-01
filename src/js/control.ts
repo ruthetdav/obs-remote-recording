@@ -2,6 +2,7 @@ import { getScenario } from "./scenario";
 import { obs } from "./obs-companion";
 import { ControlStatus } from "./model";
 import { updateControlStatus } from "./updateUI";
+import { stopPresentation, setPresentationStartTime, resetTimer } from "./presentation";
 
 export async function prepare() {
   let scenario = getScenario();
@@ -24,6 +25,7 @@ function setTransitionDuration(duration: number) {
 
 export async function record() {
   await prepare();
+  resetTimer();
   await obs.send("StartRecording");
 }
 
@@ -33,6 +35,8 @@ export async function stream() {
 }
 
 export async function stop() {
+  await stopPresentation();
+  await setPresentationStartTime(undefined);
   let status = await obs.send("GetStreamingStatus");
   if (status.recording) {
     await obs.send("StopRecording");

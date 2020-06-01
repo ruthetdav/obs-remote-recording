@@ -12,7 +12,7 @@ import { getScenario } from "./scenario";
 import * as ObsWebSocket from "obs-websocket-js";
 import { getControlStatus } from "./control";
 import { PresentationStep } from "./model";
-import { getPresentationStatus, setPresentationStartTime, updateTimer } from "./presentation";
+import { getPresentationStatus, setPresentationStartTime, updateTimerStatus } from "./presentation";
 
 export const obs = new ObsWebSocket();
 
@@ -29,7 +29,7 @@ export function setupObsHandlers() {
     enableScenario(true);
     updateControlStatus(await getControlStatus());
     updatePresentationStatus(await getPresentationStatus());
-    updateTimer();
+    updateTimerStatus();
   });
 
   obs.on("RecordingStarted", async () => {

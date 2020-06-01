@@ -6,6 +6,8 @@ import {
   PresentationStep,
 } from "./model";
 
+import Mousetrap from "mousetrap";
+
 export function updateConnectStatus(status: ConnectionStatus) {
   if (status.connected) {
     $("#connected").show();
@@ -129,6 +131,7 @@ export function updatePresentationStatus(status?: PresentationStatus) {
     $("#iconCannotPresent").hide();
     $("#iconCanPresent").hide();
     $("#iconIsFilmed").hide();
+    Mousetrap.reset();
     return;
   }
   switch (status.step) {
@@ -143,6 +146,10 @@ export function updatePresentationStatus(status?: PresentationStatus) {
       $("#iconCannotPresent").hide();
       $("#iconCanPresent").hide();
       $("#iconIsFilmed").hide();
+      Mousetrap.bind("enter", (e) => {
+        $("#startPresentation").trigger("click");
+        return false;
+      });
       break;
     case PresentationStep.presentationRequested:
       $("#presentationTextCannotStart").hide();
@@ -154,6 +161,7 @@ export function updatePresentationStatus(status?: PresentationStatus) {
       $("#iconCannotPresent").show();
       $("#iconCanPresent").hide();
       $("#iconIsFilmed").show();
+      Mousetrap.reset();
       break;
     case PresentationStep.presentationReady:
       $("#presentationTextCannotStart").hide();
@@ -165,6 +173,10 @@ export function updatePresentationStatus(status?: PresentationStatus) {
       $("#iconCannotPresent").hide();
       $("#iconCanPresent").show();
       $("#iconIsFilmed").show();
+      Mousetrap.bind("enter", (e) => {
+        $("#stopPresentation").trigger("click");
+        return false;
+      });
       break;
     case PresentationStep.finalRequested:
       $("#presentationTextCannotStart").hide();
@@ -176,6 +188,7 @@ export function updatePresentationStatus(status?: PresentationStatus) {
       $("#iconCannotPresent").hide();
       $("#iconCanPresent").show();
       $("#iconIsFilmed").show();
+      Mousetrap.reset();
       break;
     case PresentationStep.finalReady:
       $("#presentationTextCannotStart").hide();
@@ -187,6 +200,11 @@ export function updatePresentationStatus(status?: PresentationStatus) {
       $("#iconCannotPresent").show();
       $("#iconCanPresent").hide();
       $("#iconIsFilmed").hide();
+      Mousetrap.reset();
       break;
   }
+}
+
+export function updateTimerUI(values: string) {
+  $("#chrono").html(values);
 }

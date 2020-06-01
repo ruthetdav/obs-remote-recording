@@ -2,7 +2,7 @@ import { PresentationStatus, PresentationStep } from "./model";
 import { obs } from "./obs-companion";
 import { getControlStatus } from "./control";
 import { getScenario } from "./scenario";
-import { updatePresentationStatus } from "./updateUI";
+import { updatePresentationStatus, updateTimerUI } from "./updateUI";
 
 var easytimer = require("easytimer.js");
 
@@ -12,7 +12,7 @@ export async function setPresentationStartTime(date?: Date) {
   } else {
     localStorage.removeItem("presentationStartTime");
   }
-  updateTimer();
+  updateTimerStatus();
 }
 
 export function getPresentationStartTime(): Date | undefined {
@@ -77,20 +77,18 @@ export async function stopPresentation() {
 
 var timer = new easytimer.Timer();
 export function setupTimer() {
-  $("#chrono").html(
-    timer.getTimeValues().toString()
-  );
-  timer.addEventListener("secondsUpdated", function (e:any) {
-    $("#chrono").html(
-      timer.getTimeValues().toString()
-    );
+  updateTimerUI(timer.getTimeValues().toString());
+  timer.addEventListener("secondsUpdated", function (e: any) {
+    updateTimerUI(timer.getTimeValues().toString());
   });
 }
 
 export function resetTimer() {
-    timer.reset();
+  timer.reset();
+  updateTimerUI(timer.getTimeValues().toString());
 }
-export function updateTimer() {
+
+export function updateTimerStatus() {
   let presentationStartTime = getPresentationStartTime();
   if (!presentationStartTime) {
     timer.stop();

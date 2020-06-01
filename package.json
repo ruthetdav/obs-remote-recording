@@ -45,6 +45,8 @@
     "jquery.transit": "^0.9.12",
     "material-design-icons": "^3.0.1",
     "obs-websocket-js": "^4.0.0",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "mousetrap": "^1.6.5",
+    "@types/mousetrap": "^1.6.3"
   }
 }
