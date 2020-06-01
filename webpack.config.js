@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
     devServer: {
       publicPath: "/dist/",
       watchContentBase: true,
-      compress: true,
+        compress: true,
     },
 
     // entry files to compile (relative to the base dir)
@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
     plugins: [
       // save compiled SCSS into separated CSS file
       new MiniCssExtractPlugin({
-        filename: "css/style.css",
+          filename: "css/style.css",
       }),
 
       // copy static assets directory
@@ -96,9 +96,10 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.tsx?$/,
-          use: "ts-loader",
+          use: "awesome-typescript-loader",
           exclude: /node_modules/,
         },
+        { test: /\.js$/, loader: "source-map-loader" },
         // styles loader
         {
           test: /\.(sa|sc|c)ss$/,
