@@ -34,18 +34,22 @@ export function setupObsHandlers() {
 
   obs.on("RecordingStarted", async () => {
     updateControlStatus(await getControlStatus());
+    updatePresentationStatus(await getPresentationStatus());
   });
 
   obs.on("RecordingStopped", async () => {
     updateControlStatus(await getControlStatus());
+    updatePresentationStatus(await getPresentationStatus());
   });
 
   obs.on("StreamStarted", async () => {
     updateControlStatus(await getControlStatus());
+    updatePresentationStatus(await getPresentationStatus());
   });
 
   obs.on("StreamStopped", async () => {
     updateControlStatus(await getControlStatus());
+    updatePresentationStatus(await getPresentationStatus());
   });
 
   obs.on("SwitchScenes", async (data) => {

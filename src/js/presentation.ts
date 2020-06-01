@@ -3,8 +3,7 @@ import { obs } from "./obs-companion";
 import { getControlStatus } from "./control";
 import { getScenario } from "./scenario";
 import { updatePresentationStatus, updateTimerUI } from "./updateUI";
-
-var easytimer = require("easytimer.js");
+import  Timer from "easytimer.js";
 
 export async function setPresentationStartTime(date?: Date) {
   if (date) {
@@ -75,7 +74,7 @@ export async function stopPresentation() {
   });
 }
 
-var timer = new easytimer.Timer();
+var timer = new Timer();
 export function setupTimer() {
   updateTimerUI(timer.getTimeValues().toString());
   timer.addEventListener("secondsUpdated", function (e: any) {
@@ -83,9 +82,8 @@ export function setupTimer() {
   });
 }
 
-export function resetTimer() {
-  timer.reset();
-  updateTimerUI(timer.getTimeValues().toString());
+export function resetTimerUI() {
+    updateTimerUI("00:00:00");
 }
 
 export function updateTimerStatus() {
